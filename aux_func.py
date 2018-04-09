@@ -51,7 +51,13 @@ def get_search_list(start_date, end_date, min_date, max_date,
 
 def calc_temps(num_days, num_years, search_dates, engine):
     """
-    Insert explanation here
+    Take in number of days for the trip, number of years in the dataset,
+    complete set of matching dates from the dataset, and the engine from
+    the SQLAlchemy connection.
+    
+    Returns a dataframe with the average temperature, minimum temperature,
+    maximum temperature, difference between avg and min, and difference
+    between avg and max for each day.
     """
     # import necessary modules
     import numpy as np
