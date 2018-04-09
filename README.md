@@ -8,6 +8,7 @@ This README comprises the Weather Analysis portion of the project. For other asp
 - data_engineering.ipynb : This file contains the code used to clean the provided CSV datasets.
 - database_engineering.ipynb : This file contains the code used to create a SQLite database from the cleaned CSVs.
 - app.py : This file contains code for a Flask API based on the datasets I used.
+- aux.py : This file contains some functions I coded that I decided to separate out into a module to make my code more readable.
 
 Datasets were provided by Trilogy Education Services (&copy; 2017).
 
