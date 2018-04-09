@@ -77,7 +77,7 @@ sns.palplot(palette)
 ```
 
 
-![png](output_3_0.png)
+![png](~/Resources/output_3_0.png)
 
 
 ## Precipitation Analysis
@@ -119,7 +119,7 @@ plt.show()
 ```
 
 
-![png](output_6_0.png)
+![png](~/Resources/output_6_0.png)
 
 
 
@@ -330,7 +330,7 @@ plt.show()
 ```
 
 
-![png](output_12_0.png)
+![png](~/Resources/output_12_0.png)
 
 
 ### Part Two: Temperature Analysis for Trip to Hawaii
@@ -479,7 +479,7 @@ trip_temp_df
 ```
 
 
-![png](output_15_0.png)
+![png](~/Resources/output_15_0.png)
 
 
 
