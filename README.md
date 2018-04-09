@@ -1,8 +1,15 @@
 
 # Surf's Up!: Hawaii Weather Analysis
-This analysis was done using Numpy, Pandas, MatPlotLib, and Seaborn with
+This project was done using Numpy, Pandas, MatPlotLib, and Seaborn for analysis,
 SQLAlchemy serving to connect to a SQLite database I created from CSVs I 
-cleaned. Dataset was provided by Trilogy Education Services (&copy; 2017).
+cleaned, and Flask to generate a mini-API.
+
+This README comprises the Weather Analysis portion of the project. For other aspects, please see the following files:
+- data_engineering.ipynb : This file contains the code used to clean the provided CSV datasets.
+- database_engineering.ipynb : This file contains the code used to create a SQLite database from the cleaned CSVs.
+- app.py : This file contains code for a Flask API based on the datasets I used.
+
+Datasets were provided by Trilogy Education Services (&copy; 2017).
 
 
 ```python
@@ -127,19 +134,6 @@ summary_stats_df
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -237,19 +231,6 @@ station_obs_count_desc
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -391,19 +372,6 @@ trip_temp_df = aux.calc_temps(num_days, num_years, search_dates, engine)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -517,19 +485,6 @@ trip_temp_df
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
