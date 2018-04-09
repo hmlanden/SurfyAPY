@@ -94,6 +94,22 @@ def calc_temps(num_days, num_years, search_dates, engine):
                                  'min_temp':(curr_df.groupby('day').min()['Temp'][0]), 
                                  'max_temp':(curr_df.groupby('day').max()['Temp'][0]),
                                  'avg_temp':(curr_df.groupby('day').mean()['Temp'][0])})
+    
+    # create dataframe
+    result_df= pd.DataFrame.from_records(dict_result_list, 
+                                         columns=['date', 'avg_temp', 'max_temp', 'min_temp'])
+    
+    # clean dataframe
+    result_df['year'], result_df['month/day'] = (result_df['date'].
+                                                 str.split('-', 1).
+                                                 str)
+    result_df.drop(columns=['year','date'], inplace=True)
+    result_df = result_df[['month/day', 'avg_temp', 'min_temp', 'max_temp']]
+    
+    # add column with difference between min, avg, and max
+    result_df['avg/min diff'] = result_df['avg_temp'] - result_df['min_temp']
+    result_df['avg/max diff'] = result_df['max_temp'] - result_df['avg_temp']
+    
+    return result_df;                                                      
+                                                  
 
-    return pd.DataFrame.from_records(dict_result_list, 
-                                     columns=['date', 'avg_temp', 'max_temp', 'min_temp'])
