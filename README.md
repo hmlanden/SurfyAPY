@@ -358,8 +358,6 @@ Part of this assignment was to calculate the likely temperature for a theoretica
 
 Results can be seen in the chart below. Barring any unusual weather patterns, I can reasonably expect the average temperature for my trip to be 75&deg;F. As you can see from the error bars, the recorded temperature has reached a minimum of 67&deg;F and a maximum of 82&deg;F, so it seems reasonable to prepare for temperatures to be in the 70s for the majority of my trip.
 
-Please note: The error bars on the chart are slightly off (by 1-2&deg;F) due to a known MatPlotLib bug. For exact min/max temperatures, see the dataframe below the chart.
-
 
 ```python
 # ----------------------------------------------------------------------
@@ -387,6 +385,9 @@ search_dates = aux.get_search_list(start_date, end_date, min_date, max_date,
 
 # using list of dates, get avg temp, min temp, max temp in a dataframe
 trip_temp_df = aux.calc_temps(num_days, num_years, search_dates, engine)
+trip_temp_df = trip_temp_df.sort_values('month/day', ascending=True).reset_index()
+trip_temp_df.drop('index', axis=1, inplace=True)
+trip_temp_df
 ```
 
 
@@ -409,30 +410,30 @@ trip_temp_df = aux.calc_temps(num_days, num_years, search_dates, engine)
   <tbody>
     <tr>
       <th>0</th>
-      <td>07-04</td>
-      <td>76.574468</td>
-      <td>70</td>
-      <td>81</td>
-      <td>6.574468</td>
-      <td>4.425532</td>
+      <td>06-28</td>
+      <td>74.770833</td>
+      <td>69</td>
+      <td>80</td>
+      <td>5.770833</td>
+      <td>5.229167</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>07-03</td>
-      <td>74.808511</td>
-      <td>68</td>
-      <td>82</td>
-      <td>6.808511</td>
-      <td>7.191489</td>
+      <td>06-29</td>
+      <td>74.705882</td>
+      <td>67</td>
+      <td>80</td>
+      <td>7.705882</td>
+      <td>5.294118</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>07-02</td>
-      <td>75.166667</td>
-      <td>68</td>
-      <td>82</td>
-      <td>7.166667</td>
-      <td>6.833333</td>
+      <td>06-30</td>
+      <td>75.380000</td>
+      <td>67</td>
+      <td>81</td>
+      <td>8.380000</td>
+      <td>5.620000</td>
     </tr>
     <tr>
       <th>3</th>
@@ -445,30 +446,30 @@ trip_temp_df = aux.calc_temps(num_days, num_years, search_dates, engine)
     </tr>
     <tr>
       <th>4</th>
-      <td>06-30</td>
-      <td>75.380000</td>
-      <td>67</td>
-      <td>81</td>
-      <td>8.380000</td>
-      <td>5.620000</td>
+      <td>07-02</td>
+      <td>75.166667</td>
+      <td>68</td>
+      <td>82</td>
+      <td>7.166667</td>
+      <td>6.833333</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>06-29</td>
-      <td>74.705882</td>
-      <td>67</td>
-      <td>80</td>
-      <td>7.705882</td>
-      <td>5.294118</td>
+      <td>07-03</td>
+      <td>74.808511</td>
+      <td>68</td>
+      <td>82</td>
+      <td>6.808511</td>
+      <td>7.191489</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>06-28</td>
-      <td>74.770833</td>
-      <td>69</td>
-      <td>80</td>
-      <td>5.770833</td>
-      <td>5.229167</td>
+      <td>07-04</td>
+      <td>76.574468</td>
+      <td>70</td>
+      <td>81</td>
+      <td>6.574468</td>
+      <td>4.425532</td>
     </tr>
   </tbody>
 </table>
@@ -480,21 +481,22 @@ trip_temp_df = aux.calc_temps(num_days, num_years, search_dates, engine)
 ```python
 # generate list of error pairs for plotting error bars
 yerr_line_list=[]
-[yerr_line_list.append((trip_temp_df['avg/min diff'][i] + 
+[yerr_line_list.append((trip_temp_df['avg/min diff'][i] , 
                         trip_temp_df['avg/max diff'][i])) for i in np.arange(num_days+1)]
+yerrs = np.array(yerr_line_list).T
 
 # plot error data
 plt.bar(x=trip_temp_df['month/day'], 
         height=trip_temp_df['avg_temp'], color=hex_codes)
 plt.errorbar(x=trip_temp_df['month/day'],
-             y=trip_temp_df['max_temp'],
-             yerr=yerr_line_list, uplims=True,
+             y=trip_temp_df['avg_temp'],
+             yerr=yerrs,
              ecolor='black', fmt='none')
 plt.title("Expected Temperatures for 6/28-7/4/2018 (Using 2010-17 Data)", 
           size=16)
 plt.ylabel('Average Temperature (Fahrenheit)', size=13)
 plt.xlabel('Day', size=13)
-plt.ylim(40,90)
+plt.ylim(60,85)
 plt.show()
 trip_temp_df
 ```
@@ -523,30 +525,30 @@ trip_temp_df
   <tbody>
     <tr>
       <th>0</th>
-      <td>07-04</td>
-      <td>76.574468</td>
-      <td>70</td>
-      <td>81</td>
-      <td>6.574468</td>
-      <td>4.425532</td>
+      <td>06-28</td>
+      <td>74.770833</td>
+      <td>69</td>
+      <td>80</td>
+      <td>5.770833</td>
+      <td>5.229167</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>07-03</td>
-      <td>74.808511</td>
-      <td>68</td>
-      <td>82</td>
-      <td>6.808511</td>
-      <td>7.191489</td>
+      <td>06-29</td>
+      <td>74.705882</td>
+      <td>67</td>
+      <td>80</td>
+      <td>7.705882</td>
+      <td>5.294118</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>07-02</td>
-      <td>75.166667</td>
-      <td>68</td>
-      <td>82</td>
-      <td>7.166667</td>
-      <td>6.833333</td>
+      <td>06-30</td>
+      <td>75.380000</td>
+      <td>67</td>
+      <td>81</td>
+      <td>8.380000</td>
+      <td>5.620000</td>
     </tr>
     <tr>
       <th>3</th>
@@ -559,30 +561,30 @@ trip_temp_df
     </tr>
     <tr>
       <th>4</th>
-      <td>06-30</td>
-      <td>75.380000</td>
-      <td>67</td>
-      <td>81</td>
-      <td>8.380000</td>
-      <td>5.620000</td>
+      <td>07-02</td>
+      <td>75.166667</td>
+      <td>68</td>
+      <td>82</td>
+      <td>7.166667</td>
+      <td>6.833333</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>06-29</td>
-      <td>74.705882</td>
-      <td>67</td>
-      <td>80</td>
-      <td>7.705882</td>
-      <td>5.294118</td>
+      <td>07-03</td>
+      <td>74.808511</td>
+      <td>68</td>
+      <td>82</td>
+      <td>6.808511</td>
+      <td>7.191489</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>06-28</td>
-      <td>74.770833</td>
-      <td>69</td>
-      <td>80</td>
-      <td>5.770833</td>
-      <td>5.229167</td>
+      <td>07-04</td>
+      <td>76.574468</td>
+      <td>70</td>
+      <td>81</td>
+      <td>6.574468</td>
+      <td>4.425532</td>
     </tr>
   </tbody>
 </table>
