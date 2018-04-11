@@ -134,6 +134,7 @@ summary_stats_df
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -304,6 +305,7 @@ station_obs_count_desc
 
 
 ```python
+plt.rcParams["figure.figsize"] = [10,8]
 plt.pie(station_obs_count_desc['Count Observations'],  
         colors=hex_codes, shadow=True, startangle=180, autopct='%1.1f%%',
         wedgeprops={'edgecolor':'black'})
