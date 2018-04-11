@@ -8,7 +8,6 @@ This README comprises the Weather Analysis portion of the project. For other asp
 - data_engineering.ipynb : This file contains the code used to clean the provided CSV datasets.
 - database_engineering.ipynb : This file contains the code used to create a SQLite database from the cleaned CSVs.
 - app.py : This file contains code for a Flask API based on the datasets I used.
-- aux.py : This file contains some functions I coded that I decided to separate out into a module to make my code more readable.
 
 Datasets were provided by Trilogy Education Services (&copy; 2017).
 
@@ -232,6 +231,7 @@ station_obs_count_desc
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -302,6 +302,24 @@ station_obs_count_desc
 
 
 
+
+```python
+plt.pie(station_obs_count_desc['Count Observations'],  
+        colors=hex_codes, shadow=True, startangle=180, autopct='%1.1f%%',
+        wedgeprops={'edgecolor':'black'})
+plt.axis('equal')
+plt.title('Distribution of Observations \n among Hawaii Weather Stations',
+          size=16)
+plt.legend(labels=station_obs_count_desc['name'], bbox_to_anchor=(0.85, 0.85),
+           bbox_transform=plt.gcf().transFigure, frameon=True, edgecolor='black',
+          title='Legend')
+plt.show()
+```
+
+
+![png](output_11_0.png)
+
+
 ## Temperature Analysis
 ### Part 1: Temperature Histogram (2016-2017)
 Between 8/24/2016 and 8/23/2017, the majority of recorded temperature observations were between 72.5-77.5&deg;F with the average recorded temperature observation somewhere around 75&deg;F.
@@ -330,7 +348,7 @@ plt.show()
 ```
 
 
-![png](output_12_0.png)
+![png](output_13_0.png)
 
 
 ### Part Two: Temperature Analysis for Trip to Hawaii
@@ -373,6 +391,7 @@ trip_temp_df = aux.calc_temps(num_days, num_years, search_dates, engine)
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -479,13 +498,14 @@ trip_temp_df
 ```
 
 
-![png](output_15_0.png)
+![png](output_16_0.png)
 
 
 
 
 
 <div>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
