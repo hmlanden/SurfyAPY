@@ -23,21 +23,34 @@ body {
 }
 
 #section1 {
-    border: 5px solid;
+    border: 7.5px solid;
     border-color: #129490;
+    padding: 10px;
 }
 
 #section2 {
-    border: 5px solid;
+    border: 7.5px solid;
     border-color: #E0A890;
+    padding: 10px;
 }
 
 #section3 {
-    border: 5px solid;
+    border: 7.5px solid;
     border-color: #70B77E;
+    padding: 10px;
 }
 
 #reportIMG {
     width: 600px;
     height: auto;
+}
+
+thead {
+    background-color: #E0A890;
+    text-emphasis: bold;
+    text-align: center;
+}
+
+th {
+    background-color: #E0A890;
 }
