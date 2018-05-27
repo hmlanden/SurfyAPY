@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+
+    <!-- Import Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <!-- Borrowed this code (which I wrote) from another project of mine and edited it-->
+    <div class="fixed-top">
+        <div class="container-fluid" id="navbar">
+            <div class="row">
+                <div class="col">
+                    <h2 id="headerHeader">Weather in Hawaii</h2>
+                    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+                        <a class="navbar-brand" href="#">Menu</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-item nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                                <a class="nav-item nav-link active" href="report.html">Weather Report</a>
+                                <a class="nav-item nav-link" href="trip.html">Planning My Trip</a>
+                                <a class="nav-item nav-link" href="api.html">API</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1>Hawaii Weather Data Analysis</h1>
+                <p>This project was done using Numpy, Pandas, MatPlotLib, and Seaborn for analysis, SQLAlchemy serving to connect to a SQLite database I created from CSVs I cleaned, and Flask to generate a mini-API.</p>
+                <p>The <a href="https://github.com/hmlanden/SurfyAPY/blob/master/README.md">README</a> on Github comprises the Weather Analysis portion of the project. For other aspects, please see the following files:</p>
+                <ul>
+                    <li><strong>data_engineering.ipynb</strong>: This file contains the code used to clean the provided CSV datasets.</li>
+                    <li><strong>database_engineering.ipynb</strong>: This file contains the code used to create a SQLite database from the cleaned CSVs.</li>
+                    <li><strong>app.py</strong>: This file contains code for a Flask API based on the datasets I used.</li>
+                </ul>
+                <p>Datasets were provided by Trilogy Education Services (© 2017).</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" id="section1">
+                <h2>Precipitation Analysis</h2>
+                <p>Between 8/24/2016 and 8/23/2017, Hawaii appears to have recorded observations of some level of precipitation almost every single day. However, it's unclear if precipitation includes only rain or if it includes precipitation like dew.</p>
+                <p>Across the 2,015 recorded observations, the maximum amount of precipitation recorded was 6.7 inches, but the mean was 0.18 inches.</p>
+                <a href="../images/averageRecordedDailyPercipitation.png"><img src="../images/averageRecordedDailyPercipitation.png" id="reportIMG"></a>
+            </div>
+            <div class="col" id="section2">
+                <h2>Temperature Analysis</h2>
+                <p>Between 8/24/2016 and 8/23/2017, the majority of recorded temperature observations were between 72.5-77.5°F with the average recorded temperature observation somewhere around 75°F.</p>
+                <a href="../images/observedTempDistribution.png"><img src="../images/observedTempDistribution.png" id="reportIMG"></a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="section3">
+        <div class="row">
+            <div class="col">
+                <h2>Weather Station Analysis</h2>
+                <p>In this section, I parse through the weather stations that were available as part of the dataset.</p>
+                <p>There are a total of 9 weather stations in Hawaii, according to the dataset. Of those, the station with the highest observation count is USC00519281 WAIHEE 837.5 with a total of 2,772 observation across the dataset.</p>
+                <table border="1" class="dataframe">
+                    <thead>
+                        <tr style="text-align: right;">
+                            <th>Index</th>
+                            <th>Station Number</th>
+                            <th>Station Name</th>
+                            <th>Count Observations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>0</th>
+                            <td>USC00519281</td>
+                            <td>WAIHEE 837.5</td>
+                            <td>2772</td>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <td>USC00513117</td>
+                            <td>KANEOHE 838.1</td>
+                            <td>2696</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>USC00519397</td>
+                            <td>WAIKIKI 717.2</td>
+                            <td>2685</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>USC00519523</td>
+                            <td>WAIMANALO EXPERIMENTAL FARM</td>
+                            <td>2572</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>USC00516128</td>
+                            <td>MANOA LYON ARBO 785.2</td>
+                            <td>2484</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>USC00514830</td>
+                            <td>KUALOA RANCH HEADQUARTERS 886.9</td>
+                            <td>1937</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>USC00511918</td>
+                            <td>HONOLULU OBSERVATORY 702.2</td>
+                            <td>1932</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>USC00517948</td>
+                            <td>PEARL CITY</td>
+                            <td>683</td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>USC00518838</td>
+                            <td>UPPER WAHIAWA 874.3</td>
+                            <td>342</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <a href=""><img src="../images/observationDistribution.png"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import stuff that Bootstrap needs-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+</body>
+
+</html>

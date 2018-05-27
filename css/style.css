@@ -1,0 +1,43 @@
+/*#065143
+#129490
+#70B77E
+#E0A890
+#CE1483*/
+
+#navbar {
+    background-color: #129490;
+}
+
+body {
+    padding-top: 115px;
+}
+
+#headerHeader {
+    color: white;
+}
+
+#homepageImage {
+    width: auto;
+    height: 600px;
+    resize: both;
+}
+
+#section1 {
+    border: 5px solid;
+    border-color: #129490;
+}
+
+#section2 {
+    border: 5px solid;
+    border-color: #E0A890;
+}
+
+#section3 {
+    border: 5px solid;
+    border-color: #70B77E;
+}
+
+#reportIMG {
+    width: 600px;
+    height: auto;
+}

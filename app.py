@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------
 # Step 1: Import all necessary modules and create Flask app
 # ---------------------------------------------------------------------- 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import pandas as pd
 import datetime as dt
 
@@ -29,26 +29,8 @@ Measurement = Base.classes.measurements
 # ---------------------------------------------------------------------- 
 @app.route("/")
 def welcome():
-    return (f"<h1>Welcome to the Hawaii Weather API!</h1>" 
-            f"<i><strong>IMPORTANT</strong>: Make sure your start and end \
-            dates are formatted like 2018-01-01 (Year-Month-Day)</i>"
-            f"<h2>Available Routes</h2>" 
-            f"<li><b>/api/v1.0/precipitation</b>: Returns JSON of dates \
-            and precipitation observations from the last year of data in \
-            the dataset.</li>"
-            f"<li><b>/api/v1.0/stations</b>: Returns JSON of stations from \
-            the dataset.</li>"
-            f"<li><b>/api/v1.0/tobs</b>: Returns JSON of dates and \
-            temperature observations from the last year of data in the \
-            dataset.</li>"
-            f"<li><b>/api/v1.0/start_date</b>: Returns JSON of the overall \
-            minimum temperature, overall maximum temperature, and overall \
-            average temperature for all dates starting from the start date \
-            until the last date available.</li>" 
-            f"<li><b>/api/v1.0/start_date/end_date</b>: Returns JSON of the \
-            overall minimum temperature, overall maximum temperature, and \
-            overall average temperature for all dates between the start \
-            date and end date, inclusive.</li>");
+    return render_template('index.html',name='home');
+
 
 # dates and precipitation observations from the last year in the dataset
 @app.route('/api/v1.0/precipitation')
