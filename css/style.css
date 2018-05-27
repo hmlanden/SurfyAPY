@@ -48,9 +48,14 @@ body {
 thead {
     background-color: #E0A890;
     text-emphasis: bold;
-    text-align: center;
 }
 
 th {
     background-color: #E0A890;
+    text-align: center;
+}
+
+.dataframe {
+    border: 1px;
+    border-color: #E0A890;
 }
