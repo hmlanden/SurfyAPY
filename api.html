@@ -9,7 +9,7 @@
 
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -29,8 +29,8 @@
                             <div class="navbar-nav">
                                 <a class="nav-item nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
                                 <a class="nav-item nav-link" href="report.html">Weather Report</a>
-                                <a class="nav-item nav-link active" href="trip.html">Planning My Trip</a>
-                                <a class="nav-item nav-link" href="api.html">API</a>
+                                <a class="nav-item nav-link" href="trip.html">Planning My Trip</a>
+                                <a class="nav-item nav-link active" href="api.html">API</a>
                             </div>
                         </div>
                     </nav>
@@ -39,10 +39,20 @@
         </div>
     </div>
 
+
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-
+                <h1>Welcome to the Hawaii Weather API!</h1>
+                <i><strong>IMPORTANT</strong>: Make sure your start and end \
+            dates are formatted like 2018-01-01 (Year-Month-Day)</i>
+                <h2>Available Routes</h2>
+                <li><b>/api/v1.0/precipitation</b>: Returns JSON of dates \ and precipitation observations from the last year of data in \ the dataset.</li>
+                <li><b>/api/v1.0/stations</b>: Returns JSON of stations from \ the dataset.</li>
+                <li><b>/api/v1.0/tobs</b>: Returns JSON of dates and \ temperature observations from the last year of data in the \ dataset.
+                </li>
+                <li><b>/api/v1.0/start_date</b>: Returns JSON of the overall \ minimum temperature, overall maximum temperature, and overall \ average temperature for all dates starting from the start date \ until the last date available.</li>
+                <li><b>/api/v1.0/start_date/end_date</b>: Returns JSON of the \ overall minimum temperature, overall maximum temperature, and \ overall average temperature for all dates between the start \ date and end date, inclusive.</li>
             </div>
         </div>
     </div>
