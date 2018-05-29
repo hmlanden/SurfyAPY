@@ -34,6 +34,10 @@ body {
     padding: 10px;
 }
 
+#plotAlert {
+    background-color: RGB(18, 148, 144, 0.5);
+}
+
 #section3 {
     border: 7.5px solid;
     border-color: #70B77E;
