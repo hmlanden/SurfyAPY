@@ -3,3 +3,6 @@
 
 # ignore cache
 __pycache__/
+
+# ignore localenv
+localenv.js

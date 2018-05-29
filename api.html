@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>API</title>
 
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -27,10 +27,11 @@
                     </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-                                <a class="nav-item nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                                <a class="nav-item nav-link" href="index.html">Home</a>
+                                <a class="nav-item nav-link" href="about.html">About the Dataset</a>
                                 <a class="nav-item nav-link" href="report.html">Weather Report</a>
                                 <a class="nav-item nav-link" href="trip.html">Planning My Trip</a>
-                                <a class="nav-item nav-link active" href="api.html">API</a>
+                                <a class="nav-item nav-link active" href="api.html">API<span class="sr-only">(current)</span></a>
                             </div>
                         </div>
                     </nav>
@@ -45,7 +46,7 @@
             <div class="col">
                 <h1>Hawaii Weather API!</h1>
                 <div class="alert alert-info" role="alert">
-                    This API is not available via the Github.io website. In order to access it, you'll need to go to Heroku, since it's deployed there.
+                    This API is not available via the Github.io website. In order to access it, you'll need to go to Heroku, since it's deployed there. You can view the raw Flask code here though.
                 </div>
 
                 <h2>Available Routes</h2>
@@ -58,6 +59,89 @@
                 </li>
                 <li><b>/api/v1.0/start_date</b>: Returns JSON of the overall minimum temperature, overall maximum temperature, and overall average temperature for all dates starting from the start date until the last date available.</li>
                 <li><b>/api/v1.0/start_date/end_date</b>: Returns JSON of the overall minimum temperature, overall maximum temperature, and overall average temperature for all dates between the start date and end date, inclusive.</li>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <h2>Raw API Code</h2>
+                <pre><code>
+                    
+                # ----------------------------------------------------------------------
+                # Step 1: Import all necessary modules and create Flask app
+                # ---------------------------------------------------------------------- 
+                from flask import Flask, jsonify, render_template
+                import pandas as pd
+                import datetime as dt
+
+                # create app
+                app = Flask(__name__)
+
+                # ----------------------------------------------------------------------
+                # Step 3: Set up db connection and session
+                # ----------------------------------------------------------------------
+                # set up sqlalchemy engine
+                from sqlalchemy import create_engine
+                engine = create_engine('sqlite:///hawaii.sqlite')
+
+                # set up sqlalchemy base
+                from sqlalchemy.ext.automap import automap_base
+                Base = automap_base()
+                Base.prepare(engine, reflect=True)
+
+                # map classes
+                Station = Base.classes.stations
+                Measurement = Base.classes.measurements
+
+                # ----------------------------------------------------------------------
+                # Step 3: Create all required routes
+                # ---------------------------------------------------------------------- 
+                @app.route("/")
+                def welcome():
+                    return render_template('index.html',name='home');
+
+
+                # dates and precipitation observations from the last year in the dataset
+                @app.route('/api/v1.0/precipitation')
+                def precipitation():
+                    last_year_start = (dt.date(2017,8,23) - dt.timedelta(days=365)).isoformat()
+                    query = (f'SELECT date, precipitation FROM measurements \
+                             WHERE date > "{last_year_start}"')
+                    return jsonify(pd.read_sql(query, engine).to_dict(orient='records'));
+
+                # json list of stations from the dataset.
+                @app.route('/api/v1.0/stations')
+                def stations():
+                    query = 'SELECT station, name FROM stations'
+                    return jsonify(pd.read_sql(query, engine).to_dict(orient='records'));
+
+                # json list of Temperature Observations (tobs) for the previous year 
+                #@app.route('/api/v1.0/tobs')
+                #def tobs():
+                #    return "hi";
+
+                # json list of the min temp, avg temp, max temp where date = given start<=
+                @app.route('/api/v1.0/<start>')
+                def temps_startOnly(start):
+                    query = (f'SELECT AVG(temp) AS "Average Temperature", MIN(temp) \
+                             AS "Minimum Temperature", MAX(temp) AS "Maximum Temperature" \
+                             FROM measurements WHERE date >= "{start}"')
+                    return jsonify(pd.read_sql(query, engine).to_dict(orient='records'));
+
+                # json list: min temp, avg temp, max temp for dates between start/end inclusive
+                @app.route('/api/v1.0/<start>/<end>')
+                def temps_startAndEnd(start, end):
+                    query = (f'SELECT AVG(temp) AS "Average Temperature", MIN(temp) \
+                             AS "Minimum Temperature", MAX(temp) AS "Maximum Temperature" \
+                             FROM measurements WHERE date >= "{start}" AND date <= "{end}"')
+                    return jsonify(pd.read_sql(query, engine).to_dict(orient='records'));  
+
+                # ----------------------------------------------------------------------
+                # Step 4: Define main
+                # ---------------------------------------------------------------------- 
+                if __name__ == "__main__":
+                    app.run(debug=True)
+                </code></pre>
             </div>
         </div>
     </div>

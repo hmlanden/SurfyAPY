@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>About Data</title>
 
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Import Plotly -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </head>
 
 <body>
@@ -27,8 +30,8 @@
                     </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-                                <a class="nav-item nav-link active" href="index.html">Home<span class="sr-only">(current)</span></a>
-                                <a class="nav-item nav-link" href="about.html">About the Dataset</a>
+                                <a class="nav-item nav-link" href="index.html">Home</a>
+                                <a class="nav-item nav-link active" href="about.html">About the Dataset<span class="sr-only">(current)</span></a>
                                 <a class="nav-item nav-link" href="report.html">Weather Report</a>
                                 <a class="nav-item nav-link" href="trip.html">Planning My Trip</a>
                                 <a class="nav-item nav-link" href="api.html">API</a>
@@ -39,19 +42,30 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h1 class="display-1">Plan a Trip to Hawaii!</h1>
-                <h4 class="display-4 text-muted">Fun with Island Heat & Rain</h4>
+                <h1>About the Dataset</h1>
+                <h2 class="text-muted">Or, Why It's Good to Investigate Your Sources</h2>
+            </div>
+        </div>
+        <div class="row" id="section2">
+            <div class="col">
+                <h2>Weather Stations</h2>
+                <p>Upon first glance, when reviewing the dataset, it appears that we have excellent, comprehensive data. For a state as small as Hawaii, nine separate weather stations seem more than sufficient to provide excellent coverage.</p>
+                <p>However, upon reviewing the precise placement of the weather stations, a startling discrepancy is revealed. Rather than, as presumed, a roughly equal dispersion across the state of Hawaii, all nine weather stations are concentrated on the island of Oahu.</p>
+                <p>Thus, it's better to say that, rather than our conclusions applying to the weather in Hawaii as a whole, they can apply to the island of Oahu.</p>
             </div>
             <div class="col">
-                <img src="images/northShore.jpg" alt="Photo by Eric Sterman" id="homepageImage">
-                <br>Source: <a href="https://www.nationalgeographic.com/travel/destinations/north-america/united-states/hawaii/">National Geographic</a>
+                <div id="plot"></div>
             </div>
         </div>
     </div>
+
+    <!--Run station script-->
+    <script src="js/stations.js"></script>
+    <script src="js/localenv.js"></script>
+    <script src="js/plots.js"></script>
 
     <!-- Import stuff that Bootstrap needs-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

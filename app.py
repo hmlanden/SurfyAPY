@@ -29,7 +29,7 @@ Measurement = Base.classes.measurements
 # ---------------------------------------------------------------------- 
 @app.route("/")
 def welcome():
-    return render_template('index.html',name='home');
+    return 'Welcome to the API!';
 
 
 # dates and precipitation observations from the last year in the dataset
